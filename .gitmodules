@@ -1,0 +1,6 @@
+[submodule "libs/webview"]
+	path = libs/webview
+	url = https://github.com/webview/webview
+[submodule "libs/cJSON"]
+	path = libs/cJSON
+	url = https://github.com/DaveGamble/cJSON

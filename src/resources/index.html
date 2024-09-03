@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Page</title>
+    <style>
+        ~~include:dist/tailwindcss.css~~
+    </style>
+</head>
+<body class="bg-background text-foreground overflow-none">
+    <div class="flex justify-start items-start h-[100vh]">
+        <aside class="h-full border-r border-shade py-2 px-2">
+            ~~include:components/sidebar.html~~
+        </aside>
+
+        <div class="w-full flex flex-col justify-start items-start">
+            <header class="w-full py-2 px-3 border-b border-shade">
+                ~~include:components/header.html~~
+            </header>
+
+            <main class="rounded-md p-2 w-full border-shade h-[90vh] overflow-auto">
+                ~~include:components/main-content.html~~
+            </main>
+
+            <footer class="fixed bottom-0 w-full border-t border-shade py-2 px-3 text-sm">
+                ~~include:components/status-bar.html~~
+            </footer>
+        </div>
+    </div>
+
+    <script type="module">
+        ~~include: index.js~~
+    </script>
+</body>
+</html>

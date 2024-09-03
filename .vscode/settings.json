@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "resources.h": "c",
+        "random": "c"
+    }
+}
