@@ -45,9 +45,10 @@ static void resources_deinit(resources_t* r)
     free(r);
 }
 
-static void display_impl(const char* id, const char* req, void* arg) {
+static void display_impl(const char* id, const char* req, void* arg)
+{
     commands_context_t* c;
-    cJSON* arg_array, *arg_array_item;
+    cJSON *arg_array, *arg_array_item;
     int i;
 
     i = 0;
@@ -63,7 +64,8 @@ static void display_impl(const char* id, const char* req, void* arg) {
         return;
     }
 
-    cJSON_ArrayForEach(arg_array_item, arg_array) {
+    cJSON_ArrayForEach(arg_array_item, arg_array)
+    {
         printf("%d. ", ++i);
         if (cJSON_IsNumber(arg_array_item)) {
             printf("%.2f\n", arg_array_item->valuedouble);
@@ -86,8 +88,8 @@ static void display_impl(const char* id, const char* req, void* arg) {
 static void obtain_username_impl(const char* id, const char* req, void* arg)
 {
     commands_context_t* c;
-    char* username, *result_json;
-    cJSON* root, *message_string;
+    char *username, *result_json;
+    cJSON *root, *message_string;
 
     c = (commands_context_t*)arg;
     assert(c);
@@ -112,8 +114,7 @@ static void obtain_username_impl(const char* id, const char* req, void* arg)
     webview_return(*c->w, id, 0, result_json);
 }
 
-#define DOBIND(name, impl) \
-    webview_bind(*c->w, name, impl, (void*)c);
+#define DOBIND(name, impl) webview_bind(*c->w, name, impl, (void*)c);
 
 static void load_bindings(commands_context_t* c)
 {

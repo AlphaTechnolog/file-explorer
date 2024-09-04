@@ -1,16 +1,16 @@
-#include <stdio.h>
+#include <assert.h>
 #include <dirent.h>
 #include <errno.h>
+#include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 #include <string.h>
 
 #include <cJSON.h>
 #include <webview/webview.h>
 
+#include "../utils.h"
 #include "commands.h"
 #include "directories.h"
-#include "../utils.h"
 
 struct directories_scan
 {
@@ -26,7 +26,7 @@ static directories_scan_t* directories_scan_init(char* dirname)
     DIR* dir;
     struct dirent* d;
     directories_scan_t* ds;
-    list_t* filenames, *dirnames;
+    list_t *filenames, *dirnames;
 
     dir = opendir(dirname);
 
@@ -48,10 +48,10 @@ static directories_scan_t* directories_scan_init(char* dirname)
         strcpy(value, d->d_name);
 
         if (d->d_type == DT_REG) {
-            list_append(ds->files, (void*) value);
+            list_append(ds->files, (void*)value);
         } else if (d->d_type == DT_DIR && strcmp(d->d_name, ".") != 0 && strcmp(d->d_name, "..") != 0) {
             // ignores . and ..
-            list_append(ds->directories, (void*) value);
+            list_append(ds->directories, (void*)value);
         } else {
             continue;
         }
@@ -66,7 +66,7 @@ static directories_scan_t* directories_scan_init(char* dirname)
 
 static char* directories_scan_serialize(directories_scan_t* scan)
 {
-    cJSON* root, *files, *directories, *total;
+    cJSON *root, *files, *directories, *total;
     char* serialized;
     ssize_t i;
 
@@ -114,7 +114,7 @@ static void directories_scan_deinit(directories_scan_t* ds)
 void obtain_directories_impl(const char* id, const char* req, void* arg)
 {
     commands_context_t* c;
-    cJSON* arguments, *argument;
+    cJSON *arguments, *argument;
     char* serialized_scan;
     directories_scan_t* ds;
 
@@ -159,7 +159,7 @@ static int is_valid_dirname(const char* dirname)
 void check_dirname_impl(const char* id, const char* req, void* arg)
 {
     commands_context_t* c;
-    cJSON* res_root, *arg_root, *arg_string, *valid_dirname;
+    cJSON *res_root, *arg_root, *arg_string, *valid_dirname;
     char* serialized_response;
 
     c = (commands_context_t*)arg;

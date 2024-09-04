@@ -1,7 +1,7 @@
+#include <cJSON.h>
 #include <stdlib.h>
 #include <string.h>
 #include <webview/webview.h>
-#include <cJSON.h>
 
 #include "../utils.h"
 #include "commands.h"
@@ -16,12 +16,15 @@ commands_context_t* commands_context_init(webview_t* w)
     return c;
 }
 
-void commands_context_deinit(commands_context_t* c) { free(c); }
+void commands_context_deinit(commands_context_t* c)
+{
+    free(c);
+}
 
 char* format_error(const char* message)
 {
     char msg_buf[strlen(message) + 1], *formatted_json;
-    cJSON* root, *json_message;
+    cJSON *root, *json_message;
 
     strcpy(msg_buf, message);
 
