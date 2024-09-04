@@ -23,13 +23,17 @@
                 ~~include:components/main-content.html~~
             </main>
 
-            <footer class="fixed bottom-0 w-full border-t border-shade py-2 px-3 text-sm">
+            <footer class="bg-background fixed bottom-0 w-full border-t border-shade py-2 px-3 text-sm">
                 ~~include:components/status-bar.html~~
             </footer>
         </div>
     </div>
 
-    <script type="module">
+    <script>
+        ~~include: ui-controller.js~~
+    </script>
+
+    <script>
         ~~include: index.js~~
     </script>
 </body>
