@@ -2,7 +2,9 @@
     "files.associations": {
         "resources.h": "c",
         "random": "c",
-        "commands.h": "c"
+        "commands.h": "c",
+        "format": "c",
+        "dirent.h": "c"
     },
     "cmake.sourceDirectory": "/Users/alpha/work/file-explorer/libs/webview/examples"
 }

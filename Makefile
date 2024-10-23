@@ -4,34 +4,36 @@ MAKE=make
 CMAKE=cmake
 NPM=npm
 
-CFLAGS=-Wall -march=native -mtune=native -std=gnu89
-CFLAGS+=-Ilibs/webview/dist/usr/include
-CFLAGS+=-Ilibs/cJSON
-CFLAGS+=$(shell pkg-config --cflags webkitgtk-6.0)
+UNAME_S := $(shell uname -s)
+
+override CFLAGS+=-Wall -march=native -mtune=native -std=gnu89
+override CFLAGS+=-Ilibs/webview/dist/usr/include
+override CFLAGS+=-Ilibs/cJSON
+
+ifeq ($(UNAME_S),Linux)
+override CFLAGS+=$(shell pkg-config --cflags webkitgtk-6.0)
+endif
 
 CXXFLAGS=$(CFLAGS)
 
-UNAME_S := $(shell uname -s)
-
-LDFLAGS=
-LDFLAGS+=-Llibs/cJSON -lcjson
+override LDFLAGS+=-Llibs/cJSON -lcjson
 
 ifeq ($(UNAME_S),Linux)
-LDFLAGS+=-Llibs/webview/dist/usr/lib64 -lwebview
-LDFLAGS+=$(shell pkg-config --libs webkitgtk-6.0) -lstdc++
+override LDFLAGS+=-Llibs/webview/dist/usr/lib64 -lwebview
+override LDFLAGS+=$(shell pkg-config --libs webkitgtk-6.0) -lstdc++
 endif
 
 ifeq ($(UNAME_S),Darwin)
-LDFLAGS+=-Llibs/webview/dist/usr/lib -lwebview
-LDFLAGS+=-framework WebKit -ldl -lstdc++
+override LDFLAGS+=-Llibs/webview/dist/usr/lib -lwebview
+override LDFLAGS+=-framework WebKit -ldl -lstdc++
 endif
 
 ifeq ($(UNAME_S),Linux)
 LIB64 = lib64
-DYNLIB_EXT = .so
+DYNLIB_EXT = so
 else ifeq ($(UNAME_S),Darwin)
 LIB64 = lib
-DYNLIB_EXT = .dylib
+DYNLIB_EXT = dylib
 endif
 
 SRC=$(wildcard src/**/*.c src/*.c)
@@ -48,7 +50,7 @@ libs/webview/dist/usr/$(LIB64)/libwebview.a:
 	cd libs/webview/build && $(CMAKE) -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
 	cd libs/webview/build && $(MAKE)
 	cd libs/webview/build && $(MAKE) DESTDIR=../dist install
-	cd libs/webview/dist/usr/lib64 && rm *.$(DYNLIB_EXT)
+	cd libs/webview/dist/usr/$(LIB64) && rm *.$(DYNLIB_EXT)
 
 libs/cJSON/libcjson.a:
 	cd libs/cJSON && $(MAKE)
@@ -56,6 +58,7 @@ libs/cJSON/libcjson.a:
 
 css:
 	mkdir -p src/resources/dist
+	test -d node_modules || $(NPM) install
 	$(NPM) run build
 
 $(OUTPUT): $(OBJS)

@@ -25,13 +25,13 @@ const updateUsername = async () => {
 }
 
 /**
- * Converts ~ into /home/username
+ * Converts ~ into $HOME
  * @param {string} value
  * @returns Expanded value
  */
 const expandTilde = async (value) => {
     if (cachedUsername === undefined) await updateUsername();
-    return value.replace("~", `/home/${cachedUsername}`);
+    return value.replace("~", homePath(cachedUsername));
 }
 
 /**
@@ -41,7 +41,7 @@ const expandTilde = async (value) => {
  */
 const compressUsername = async (value) => {
     if (cachedUsername === undefined) await updateUsername();
-    return value.replace(`/home/${cachedUsername}`, "~");
+    return value.replace(homePath(cachedUsername), "~");
 }
 
 const showNoContent = (value) => {

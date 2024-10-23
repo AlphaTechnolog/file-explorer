@@ -1,3 +1,5 @@
+#define _DEFAULT_SOURCE
+
 #include <assert.h>
 #include <dirent.h>
 #include <errno.h>
@@ -28,9 +30,7 @@ static directories_scan_t* directories_scan_init(char* dirname)
     directories_scan_t* ds;
     list_t *filenames, *dirnames;
 
-    dir = opendir(dirname);
-
-    if (errno == ENOENT) {
+    if (!(dir = opendir(dirname))) {
         return NULL;
     }
 
@@ -125,6 +125,14 @@ void obtain_directories_impl(const char* id, const char* req, void* arg)
 
     if (!(argument = cJSON_GetArrayItem(arguments, 0)) || !cJSON_IsString(argument)) {
         webview_return(*c->w, id, 1, format_error("Argument is not of type string!"));
+        return;
+    }
+
+    if (!(ds = directories_scan_init(argument->valuestring))) {
+        char msg_buf[100] = "Unable to read from: ";
+        strlcat(msg_buf, argument->valuestring, sizeof(msg_buf));
+        cJSON_Delete(arguments);
+        webview_return(*c->w, id, 1, format_error(msg_buf));
         return;
     }
 

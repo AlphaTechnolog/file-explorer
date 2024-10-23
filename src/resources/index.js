@@ -38,7 +38,7 @@ const request = (fnName, ...params) => new Promise(async (resolve, reject) => {
 
 const initialCurrentDirectory = async () => {
     const { username } = await request("obtainUsername");
-    context.currentDirectory = `/home/${username}/`;
+    context.currentDirectory = homePath(username);
 }
 
 /**
