@@ -3,5 +3,6 @@
         "resources.h": "c",
         "random": "c",
         "commands.h": "c"
-    }
+    },
+    "cmake.sourceDirectory": "/Users/alpha/work/file-explorer/libs/webview/examples"
 }
