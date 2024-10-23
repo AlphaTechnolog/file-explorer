@@ -3,3 +3,4 @@ webview-example
 *.o
 node_modules
 src/resources/dist/tailwindcss.css
+file-explorer
