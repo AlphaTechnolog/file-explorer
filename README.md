@@ -7,12 +7,12 @@ A file explorer built with bare c89 and a vanilla-javascript based frontend with
 At the moment we can just build it from source, and you'll need to install some dependencies before.
 
 ```sh
-apt install libgtk-3-dev libwebkit2gtk-4.1-dev
+apt install libgtk-3-dev libwebkit2gtk-4.0-dev
 # You'll also need to install nodejs either by using nvm or some other way.
 ```
 
 > [!NOTE]
-> This project got mac support, but if building for mac, you can just skip these dependencies, WebKit framework should already be available and ready to be linked with.
+> This project got mac support, but if building for mac, WebKit framework should already be available and ready to be linked with, you would have to probably install `gtk+3` with brew tho.
 
 > You'll also probably need to install pkg-config, get a compiler, either it's clang or gcc, and some build-essentials. NOTE: For arch users you will need the webkit2gtk pkg, not webkitgtk-6.0
 
