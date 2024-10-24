@@ -11,28 +11,23 @@ override CFLAGS+=-Ilibs/webview/dist/usr/include
 override CFLAGS+=-Ilibs/cJSON
 
 ifeq ($(UNAME_S),Linux)
-override CFLAGS+=$(shell pkg-config --cflags webkitgtk-6.0)
+override CFLAGS+=$(shell pkg-config --cflags webkit2gtk-4.0 gtk+-3.0)
 endif
 
 CXXFLAGS=$(CFLAGS)
 
 override LDFLAGS+=-Llibs/cJSON -lcjson
+override LDFLAGS+=-Llibs/webview/dist/usr/lib -lwebview
 
 ifeq ($(UNAME_S),Linux)
-override LDFLAGS+=-Llibs/webview/dist/usr/lib64 -lwebview
-override LDFLAGS+=$(shell pkg-config --libs webkitgtk-6.0) -lstdc++
-endif
-
-ifeq ($(UNAME_S),Darwin)
-override LDFLAGS+=-Llibs/webview/dist/usr/lib -lwebview
+override LDFLAGS+=$(shell pkg-config --libs webkit2gtk-4.0 gtk+-3.0) -lstdc++
+else ifeq ($(UNAME_S),Darwin)
 override LDFLAGS+=-framework WebKit -ldl -lstdc++
 endif
 
 ifeq ($(UNAME_S),Linux)
-LIB64 = lib64
 DYNLIB_EXT = so
 else ifeq ($(UNAME_S),Darwin)
-LIB64 = lib
 DYNLIB_EXT = dylib
 endif
 
@@ -43,14 +38,15 @@ OUTPUT=file-explorer
 
 all: libs css $(OUTPUT)
 
-libs: libs/webview/dist/usr/$(LIB64)/libwebview.a libs/cJSON/libcjson.a
+libs: libs/webview/dist/usr/lib/libwebview.a libs/cJSON/libcjson.a
 
-libs/webview/dist/usr/$(LIB64)/libwebview.a:
+libs/webview/dist/usr/lib/libwebview.a:
 	cd libs/webview && mkdir -p build dist
 	cd libs/webview/build && $(CMAKE) -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
 	cd libs/webview/build && $(MAKE)
 	cd libs/webview/build && $(MAKE) DESTDIR=../dist install
-	cd libs/webview/dist/usr/$(LIB64) && rm *.$(DYNLIB_EXT)
+	test -d libs/webview/dist/usr/lib64 && mv -v libs/webview/dist/usr/lib{64,} || true
+	cd libs/webview/dist/usr/lib && rm *.$(DYNLIB_EXT)
 
 libs/cJSON/libcjson.a:
 	cd libs/cJSON && $(MAKE)

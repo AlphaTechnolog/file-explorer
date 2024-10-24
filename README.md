@@ -14,7 +14,7 @@ apt install libgtk-3-dev libwebkit2gtk-4.1-dev
 > [!NOTE]
 > This project got mac support, but if building for mac, you can just skip these dependencies, WebKit framework should already be available and ready to be linked with.
 
-> You'll also probably need to install pkg-config, get a compiler, either it's clang or gcc, and some build-essentials
+> You'll also probably need to install pkg-config, get a compiler, either it's clang or gcc, and some build-essentials. NOTE: For arch users you will need the webkit2gtk pkg, not webkitgtk-6.0
 
 After so, you can clone the project with all the submodules and then issue `make`:
 
