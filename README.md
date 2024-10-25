@@ -110,19 +110,14 @@ For macOS:
 brew install gtk+3
 ```
 
-> **Note:** For Arch Linux users, install `webkit2gtk` instead of `webkitgtk-6.0`.
-
-
-
+> [!NOTE]
+> For Arch Linux users, install `webkit2gtk` instead of `webkitgtk-6.0`.
 
 4. **Build the project:**
 
 ```shellscript
 make
 ```
-
-
-
 
 After successful compilation, you'll find the `file-explorer` binary in the project root.
 
@@ -136,26 +131,6 @@ After successful compilation, you'll find the `file-explorer` binary in the proj
 
 This command will open the File Explorer application in your terminal.
 
-## 🛠️ Development
-
-### 🧪 Running Tests
-
-To run the test suite:
-
-```shellscript
-make test
-```
-
-[comment]: <> (### 🔧 Building from Source)
-[comment]: <> (For development builds with debug symbols:)
-[comment]: <> (```shellscript)
-[comment]: <> (make debug)
-[comment]: <> (```)
-[comment]: <> (For optimized release builds:)
-[comment]: <> (```shellscript)
-[comment]: <> (make release)
-[comment]: <> (```)
-
 ## 🤝 Contributing
 
 We welcome contributions to File Explorer! Here's how you can help:
@@ -166,9 +141,6 @@ We welcome contributions to File Explorer! Here's how you can help:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-Please read our [Contributing Guidelines](CONTRIBUTING.md) for more details.
-
 ## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -178,7 +150,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 * [GTK](https://www.gtk.org/) for the GUI toolkit
 * [WebKit](https://webkit.org/) for web content rendering
 * All our amazing [contributors](#-contributors)
-
 
 ## ❓ FAQ
 
@@ -202,11 +173,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🌐 Localization
 
-File Explorer currently supports English. We're looking for contributors to help with translations! If you're interested, please check our [Localization Guide](LOCALIZATION.md).
+File Explorer currently supports just English. Contributors are welcome to help with more languages!
 
 ## 🔒 Security
 
-We take security seriously. If you discover a security vulnerability, please send an e-mail to [gfranklings@gmail.com](mailto:gfranklings@gmail.com). For more details, read our [Security Policy](SECURITY.md).
+We take security seriously. If you discover a security vulnerability, please send an e-mail to [gfranklings@gmail.com](mailto:gfranklings@gmail.com).
 
 ## 💼 Support
 
@@ -227,8 +198,7 @@ Love File Explorer? Let the world know!
 **AlphaTechnolog**
 
 * GitHub: [@AlphaTechnolog](https://github.com/AlphaTechnolog)
-* Twitter: [@AlphaTechnolog](https://twitter.com/AlphaTechnolog)
-
+* Twitter: [@alpha_technolog](https://twitter.com/alpha_technolog)
 
 ## 🏆 Contributors
 
@@ -237,10 +207,6 @@ Thanks to these wonderful people:
 <a href="https://github.com/AlphaTechnolog/file-explorer/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=AlphaTechnolog/file-explorer" />
 </a>
-
-## 📝 Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for more information on what has changed recently.
 
 ---
 
