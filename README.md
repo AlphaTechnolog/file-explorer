@@ -244,6 +244,6 @@ See [CHANGELOG.md](CHANGELOG.md) for more information on what has changed recent
 
 ---
 
-<div align="center">
-Made with ❤️ by [AlphaTechnolog](https://github.com/AlphaTechnolog)
-</div>
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/AlphaTechnolog">AlphaTechnolog</a>
+</p>
